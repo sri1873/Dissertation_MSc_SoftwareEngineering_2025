@@ -1,0 +1,138 @@
+{
+  "name": "tms-2020_ideal",
+  "services": [
+    {
+      "nanoentities": [
+        "Exam.examinee",
+        "Exam.id",
+        "Configuration.id",
+        "Email.email",
+        "User.id"
+      ],
+      "id": "S1",
+      "name": "Configuration Management"
+    },
+    {
+      "nanoentities": [
+        "Language.languageId",
+        "ConfigurationGroup.category",
+        "ConfigurationGroup.level",
+        "ConfigurationGroup.languageId",
+        "Question.title"
+      ],
+      "id": "S2",
+      "name": "Question Management"
+    },
+    {
+      "nanoentities": [
+        "Exam.id",
+        "Exam.status",
+        "Choice.id",
+        "Question.id"
+      ],
+      "id": "S3",
+      "name": "Exam Management"
+    },
+    {
+      "nanoentities": [
+        "User.userName",
+        "User.id",
+        "Credential.value",
+        "Role.name"
+      ],
+      "id": "S4",
+      "name": "User Management"
+    }
+  ],
+  "relations": [
+    {
+      "serviceA": "Configuration Management",
+      "serviceB": "Exam Management",
+      "sharedEntities": [
+        "Exam.id"
+      ],
+      "direction": "OUTGOING"
+    },
+    {
+      "serviceA": "Configuration Management",
+      "serviceB": "Question Management",
+      "sharedEntities": [
+        "Configuration.id"
+      ],
+      "direction": "OUTGOING"
+    },
+    {
+      "serviceA": "Configuration Management",
+      "serviceB": "User Management",
+      "sharedEntities": [
+        "User.id"
+      ],
+      "direction": "OUTGOING"
+    },
+    {
+      "serviceA": "Exam Management",
+      "serviceB": "Question Management",
+      "sharedEntities": [
+        "Configuration.id"
+      ],
+      "direction": "OUTGOING"
+    }
+  ],
+  "useCaseResponsibility": {
+    "Configuration Management": [
+      "CreateExam",
+      "ConfigurationCaller",
+      "GetCategory"
+    ],
+    "Question Management": [
+      "ManageCategories",
+      "GetCategoryInfo",
+      "Configuration",
+      "Language",
+      "Question",
+      "createTest"
+    ],
+    "Exam Management": [
+      "Exam",
+      "UpdateChoices"
+    ],
+    "User Management": [
+      "User",
+      "UserRoles",
+      "ChangePassword"
+    ]
+  },
+  "serviceNames": [
+    "Exam Management",
+    "Question Management",
+    "Configuration Management",
+    "User Management"
+  ],
+  "serviceCalls": [
+    {
+      "caller": "Configuration Management",
+      "callee": "Question Management",
+      "callCount": 6
+    },
+    {
+      "caller": "Configuration Management",
+      "callee": "Exam Management",
+      "callCount": 1
+    },
+    {
+      "caller": "Configuration Management",
+      "callee": "User Management",
+      "callCount": 4
+    },
+    {
+      "caller": "Configuration Management",
+      "callee": "Question Management",
+      "callCount": 3
+    },
+    {
+      "caller": "Exam Management",
+      "callee": "Question Management",
+      "callCount": 2
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "microservice-consul_ideal",
+  "services": [
+    {
+      "nanoentities": [
+        "Item.itemId",
+        "Item.price"
+      ],
+      "id": "S1",
+      "name": "catalog"
+    },
+    {
+      "nanoentities": [
+        "Customer.customerId"
+      ],
+      "id": "S2",
+      "name": "customer"
+    },
+    {
+      "nanoentities": [
+        "Order.customerId",
+        "Order.orderId"
+      ],
+      "id": "S3",
+      "name": "order"
+    }
+  ],
+  "relations": [],
+  "useCaseResponsibility": {
+    "Catalog": [
+      "GetPrice",
+      "GetAllItems",
+      "GetItem"
+    ],
+    "Customer": [
+      "ValidCustomer",
+      "FindAllCustomers",
+      "GetCustomer"
+    ],
+    "Order": [
+      "CreateOrder",
+      "GetOrder",
+      "FindAllOrders",
+      "DeleteOrder"
+    ]
+  },
+  "serviceNames": [
+    "Catalog",
+    "Customer",
+    "Order"
+  ],
+  "serviceCalls": []
+}
